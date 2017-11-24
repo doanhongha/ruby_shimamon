@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @task.name %>
+</p>
+
+<p>
+  <strong>description:</strong>
+  <%= @task.description %>
+</p>
+
+<p>
+  <strong>status:</strong>
+  <%= Task::STATUS_HASH[@task.status.to_s] %>
+</p>
+
+<p>
+  <strong>deadline:</strong>
+  <%= @task.deadline %>
+</p>
+
+<p>
+  <strong>priority:</strong>
+  <%= Task::PRIORITY_HASH[@task.priority.to_s] %>
+</p>
+
+<p>
+  <strong>tag:</strong>
+  <%= @task.tag %>
+</p>
+
+
+<p>
+  <strong>deleted_at:</strong>
+  <%= @task.deleted_at %>
+</p>
+
