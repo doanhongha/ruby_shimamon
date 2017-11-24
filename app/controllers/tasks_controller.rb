@@ -4,14 +4,14 @@ class TasksController < ApplicationController
 		@task = Task.new
 	end
 	def index
-		@tasks = Task.all
+		@tasks = Task.order('created_at DESC').all
 	end
 	def create
 		@task = current_user.tasks.new(task_params)
 		if @task.save
 			redirect_to tasks_path
 		else
-			redirect_to users_path
+			render 'new'
 		end
 	end
 
@@ -30,6 +30,12 @@ class TasksController < ApplicationController
 
 	def show
 		set_task
+	end
+
+	def destroy
+		set_task
+		@task.destroy
+		redirect_to tasks_path
 	end
 
 	private

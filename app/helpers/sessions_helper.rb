@@ -26,13 +26,13 @@ module SessionsHelper
 
 	def logged_in_user
 		unless logged_in?
-	        redirect_to 'users'
+	        redirect_to login_path
 	    end
 	end
 
 	def redirect_login
 		unless logged_in?
-			redirect_to '/login'
+			redirect_to login_path
 		end
 	end
 
