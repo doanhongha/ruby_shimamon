@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       user = User.find_by(email: params[:session][:email].downcase)
       if user && user.authenticate(params[:session][:password])
         log_in(user)
-        redirect_to users_path
+        redirect_to tasks_path
       else 
         flash.now[:'alert-danger'] = 'User/password error!'
         render 'new'
