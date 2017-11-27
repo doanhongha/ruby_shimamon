@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 		@task = Task.new
 	end
 	def index
-		@tasks = Task.order('created_at DESC').all
+		@tasks = Task.order('deadline ASC').all
 	end
 	def create
 		@task = current_user.tasks.new(task_params)
@@ -36,6 +36,10 @@ class TasksController < ApplicationController
 		set_task
 		@task.destroy
 		redirect_to tasks_path
+	end
+
+	def set_deadline
+		set_task
 	end
 
 	private

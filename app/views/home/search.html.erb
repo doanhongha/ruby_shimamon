@@ -1,17 +1,7 @@
 <p id="notice"><%= notice %></p>
 <p style="color: red;"><%= @error ? @error : '' %></p>
-
 <h1>Tasks</h1>
-<%= form_with url: "/search", class: "navbar-form navbar-left", method: :get, local: true do |form| %>
-        
-  <div class="form-group">
-    <%= form.text_field :key, :placeholder => "Search" , class: "form-control", value: params[:key] ? params[:key] : '' %>
-  </div>
-  <div class="form-group">
-    <%= form.select :status, Task::STATUS_HASH.map{|h| [h[1], h[0]]} %>
-  </div>
-  <%= form.submit "Search", class: "btn btn-default", name: nil %>
-<% end %>
+
 <table class="table">
   <thead>
     <tr>
@@ -28,15 +18,15 @@
   </thead>
 
   <tbody>
-    <% @tasks.each do |task| %>
+    <% @result.each do |task| %>
       <tr>
         <td><%= task.name %></td>
         <td><%= task.description %></td>
-        <td><%= Task::STATUS_HASH[task.status.to_s] %></td>
+        <td><%= task.status %></td>
         <td><%= task.deadline %></td>
-        <td><%= Task::PRIORITY_HASH[task.priority.to_s] %></td>
+        <td><%= task.priority %></td>
         <td><%= task.tag %></td>
-        <td><%= task.user.name %></td>
+        <td><%= task.assign %></td>
         <td><%= task.deleted_at %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Show', task %></td>
