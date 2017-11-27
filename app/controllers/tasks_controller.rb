@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 		@task = Task.new
 	end
 	def index
-		@tasks = Task.order('deadline ASC')
+		@tasks = Task.order('deadline ASC').where(assign: current_user.id)
 		@tasks = Kaminari.paginate_array(@tasks).page(params[:page])
 	end
 	def create
