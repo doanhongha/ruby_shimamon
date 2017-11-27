@@ -1,10 +1,12 @@
 class TasksController < ApplicationController
 	before_action :logged_in_user
+
 	def new
 		@task = Task.new
 	end
 	def index
-		@tasks = Task.order('deadline ASC').all
+		@tasks = Task.order('deadline ASC')
+		@tasks = Kaminari.paginate_array(@tasks).page(params[:page])
 	end
 	def create
 		@task = current_user.tasks.new(task_params)
