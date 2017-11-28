@@ -41,7 +41,7 @@ module SessionsHelper
 			if current_user.role == 1
 				raw('
 					<ul class="dropdown-menu">
-			            <li><a href="/admin/index">'+@current_user.name+'</a></li>
+			            <li><a href="/admins/index">'+@current_user.name+'</a></li>
 			            <li><a data-method="delete" href="/logout">Logout</a></li>
 			        </ul>
 					')

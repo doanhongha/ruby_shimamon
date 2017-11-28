@@ -5,7 +5,7 @@ class User < ApplicationRecord
 	validates :name, presence: true, length: {in: 4..255}
 
 	has_secure_password
-	has_many :tasks,class_name: 'Task', foreign_key: :assign
+	has_many :tasks,class_name: 'Task', foreign_key: :assign, :dependent => :destroy
 
 	# after_destroy :delete_tasks
 	# def delete_tasks
