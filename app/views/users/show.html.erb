@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<br>
+<p id="notice"><%= notice %></p>
+<p style="color: red;"><%= @error ? @error : '' %></p>
+
+<h1>Tasks</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Deadline</th>
+      <th>Priority</th>
+      <th>Tag</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.name %></td>
+        <td><%= task.description %></td>
+        <td><%= Task::STATUS_HASH[task.status.to_s] %></td>
+        <td><%= task.deadline %></td>
+        <td><%= Task::PRIORITY_HASH[task.priority.to_s] %></td>
+        <td><%= task.tag %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>

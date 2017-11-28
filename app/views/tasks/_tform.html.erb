@@ -38,11 +38,6 @@
     <%= form.label :tag %>
     <%= form.collection_select :tag, Tag.order(:name),:id,:name, include_blank: true , class: "form-control"%>
   </div>
-<!-- 
-  <div class="field">
-    <%= form.label :deleted_at %>
-    <%= form.datetime_select :deleted_at, id: :task_deleted_at %>
-  </div> -->
 
   <div class="form-group">
     <%= form.submit class: "btn btn-primary"%>

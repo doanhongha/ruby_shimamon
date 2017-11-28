@@ -58,4 +58,6 @@ gem 'bootstrap-sass', '3.3.6'
 #pagination
 gem 'kaminari', '~> 0.17.0'
 gem 'kaminari-bootstrap', '~> 3.0.1'
+#chosen
+gem 'chosen-rails'
 

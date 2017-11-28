@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-	before_action :logged_in_user, only: [:index]
+	before_action :logged_in_user, only: [:index, :edit, :update, :show]
+	before_action :admin, only: [:destroy]
 	def index
-		@users = User.all
+		@users = User.where.not(id: current_user.id)
 	end
 	def register
 		if logged_in?
@@ -29,6 +30,30 @@ class UsersController < ApplicationController
 		    end
 		end
   	end
+
+  	def edit
+		set_user
+	end
+
+	def update
+		set_user
+		if @user.update_attributes(user_params)
+			redirect_to user_path
+		else
+			redirect_to tasks_path
+		end
+	end
+
+	def show
+		set_user
+		@tasks = Task.where(assign: @user.id)
+	end
+
+	def destroy
+		set_user
+		@user.destroy
+		redirect_to tasks_path
+	end
   	private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
