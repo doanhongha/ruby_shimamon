@@ -1,34 +1,23 @@
 class ErrorsController < ApplicationController
-	rescue_from ActiveRecord::RecordNotFound, with: :render_404
-	rescue_from ActionController::RoutingError, with: :render_404
-	rescue_from StandardError, with: :render_500
+   def not_found
+     respond_to do |format|
+       format.html { render status: 404 }
+       format.json { render json: { error: "Resource not found" }, status: 404 }
+     end
+   end
 
-	def render_404(exception = nil)
-		if exception
-		  logger.info "Rendering 404 with exception: #{exception.message}"
-		end
-		render template: "errors/error_404", status: 404
-	end
+   def unacceptable
+     respond_to do |format|
+       format.html { render status: 422 }
+       format.json { render json: { error: "Params unacceptable" }, status: 422 }
+     end
+   end
 
-	def render_500(exception = nil)
-		if exception
-		  logger.info "Rendering 500 with exception: #{exception.message}"
-	end
-		render template: "errors/error_500", status: 500
-	end
-
-	def show; raise env["action_dispatch.exception"]; end
-	end
-
-	def not_found
-		render :status => 404
-	end
-
-	def unacceptable
-		render :status => 422
-	end
-
-	def internal_error
-		render :status => 500
-	end
+   def internal_error
+     respond_to do |format|
+       format.html { render status: 500 }
+       format.json { render json: { error: "Internal server error" }, status: 500 }
+     end
+   endrender :status => 500
+   end
 end
