@@ -9,7 +9,9 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
-
+<%= if @user.id == current_user.id
+  link_to 'Update infomation', edit_user_path(@user)
+end %>
 <br>
 <p id="notice"><%= notice %></p>
 <p style="color: red;"><%= @error ? @error : '' %></p>
@@ -24,6 +26,7 @@
       <th>Deadline</th>
       <th>Priority</th>
       <th>Tag</th>
+      <th colspan="4">Actions</th>
     </tr>
   </thead>
 
@@ -35,9 +38,17 @@
         <td><%= Task::STATUS_HASH[task.status.to_s] %></td>
         <td><%= task.deadline %></td>
         <td><%= Task::PRIORITY_HASH[task.priority.to_s] %></td>
-        <td><%= task.tag %></td>
+        <td><%= get_tag_name(task.tag) %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Destroy', task_path(task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Set Deadline', set_deadline_path(task) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
+<%= if @user.id == current_user.id
+  link_to 'New task', new_task_path
+end %>
+

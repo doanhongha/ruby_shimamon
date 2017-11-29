@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124050946) do
+ActiveRecord::Schema.define(version: 20171128041803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "tag_tasks", force: :cascade do |t|
+    t.bigint "tag_id"
+    t.bigint "task_id"
+    t.index ["tag_id"], name: "index_tag_tasks_on_tag_id"
+    t.index ["task_id"], name: "index_tag_tasks_on_task_id"
+  end
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
@@ -23,20 +30,13 @@ ActiveRecord::Schema.define(version: 20171124050946) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tags_tasks", force: :cascade do |t|
-    t.bigint "tag_id"
-    t.bigint "task_id"
-    t.index ["tag_id"], name: "index_tags_tasks_on_tag_id"
-    t.index ["task_id"], name: "index_tags_tasks_on_task_id"
-  end
-
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "status"
     t.datetime "deadline"
     t.integer "priority"
-    t.integer "tag"
+    t.string "tag"
     t.integer "assign"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
@@ -53,6 +53,6 @@ ActiveRecord::Schema.define(version: 20171124050946) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "tags_tasks", "tags"
-  add_foreign_key "tags_tasks", "tasks"
+  add_foreign_key "tag_tasks", "tags"
+  add_foreign_key "tag_tasks", "tasks"
 end
