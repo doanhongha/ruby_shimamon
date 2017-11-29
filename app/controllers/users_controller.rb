@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :logged_in_user, only: [:index, :edit, :update, :show]
-	before_action :admin, only: [:destroy]
+	before_action :admin, only: [:destroy, :index]
 	def index
 		@users = User.where.not(id: current_user.id)
 	end
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 	def destroy
 		set_user
 		@user.destroy
-		redirect_to tasks_path
+    	redirect_back(fallback_location: root_path)
 	end
   	private
     # Use callbacks to share common setup or constraints between actions.
