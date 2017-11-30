@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
 	has_secure_password
 	has_many :tasks,class_name: 'Task', foreign_key: :assign, :dependent => :destroy
-
+	has_one :profile, :dependent => :destroy
 	# after_destroy :delete_tasks
 	# def delete_tasks
 	# 	@tasks = Task.where(assign: current_user.id)

@@ -41,6 +41,10 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem "rspec-rails"
+  gem "factory_girl_rails"
+  gem "guard-rspec"
+  gem "spring-commands-rspec"
 end
 
 group :development do
@@ -59,5 +63,15 @@ gem 'bootstrap-sass', '3.3.6'
 gem 'kaminari', '~> 0.17.0'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 
+group :test do
+  gem "faker"
+  gem "database_cleaner"
+  gem "launchy"
+  gem "selenium-webdriver"
+  gem "shoulda-matchers"
+end
+  gem 'carrierwave', '~> 1.0'
+  gem 'fog'
+  gem 'mini_magick'
 
 
