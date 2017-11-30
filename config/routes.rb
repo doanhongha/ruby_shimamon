@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :tags
 	resources :tasks
 	resources :users
+  resources :profiles
     root 'home#index'
 	get    '/register',  to: 'users#register'
 	post   '/register',  to: 'users#create'
