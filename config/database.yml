@@ -17,7 +17,7 @@ test: &TEST
 production:
   adapter: postgresql
   encoding: utf8
-  database: ruby
+  database: ruby_trainning
   pool: 5
   username: postgres
   password: hongha1994
