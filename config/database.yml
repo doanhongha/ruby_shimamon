@@ -17,10 +17,10 @@ test: &TEST
 production:
   adapter: postgresql
   encoding: utf8
-  database: random
+  database: ruby
   pool: 5
-  username: 
-  password:
+  username: postgres
+  password: hongha1994
 
 cucumber:
   <<: *TEST
