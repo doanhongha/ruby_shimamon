@@ -43,21 +43,20 @@ role :db, %w{ec2-user@13.59.50.102}
 #
 # Global options
 # --------------
-set :ssh_options, {
-    keys: %w(~/.ssh/id_rsa),
-    forward_agent: true,
-    user: 'deploy',
-}
+# set :ssh_options, {
+#     keys: %w(~/.ssh/id_rsa),
+#     forward_agent: true,
+#     user: 'deploy',
+# }
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
-# server 'example.com',
-#   user: 'user_name',
-#   roles: %w{web app},
-#   ssh_options: {
-#     user: 'user_name', # overrides user setting above
-#     keys: %w(/home/user_name/.ssh/id_rsa),
-#     forward_agent: false,
-#     auth_methods: %w(publickey password)
-#     # password: 'please use keys'
-#   }
+server '13.59.50.102',
+  user: 'ec2-user',
+  roles: %w{web app db},
+  ssh_options: {
+      user: 'ec2-user',
+    keys: %w(/Users/doanhongha/hongha1994.pem),
+    forward_agent: true,
+    auth_methods: %w(publickey)
+  }
