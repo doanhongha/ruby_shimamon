@@ -3,15 +3,13 @@ lock '3.4.1'
 
 set :application, 'ruby_shimamon'
 set :repo_url, 'git@github.com:doanhongha/ruby_shimamon.git'
-
+set :scm, :git
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :branch, "master"
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/deploy/ruby_shimamon'
 
-# Default value for :scm is :git
-set :scm, :git
 
 # Default value for :format is :pretty
 set :format, :pretty
@@ -20,7 +18,7 @@ set :format, :pretty
 # set :log_level, :debug
 
 # Default value for :pty is false
-set :pty, true
+# set :pty, true
 
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
