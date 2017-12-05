@@ -15,13 +15,13 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create tag" do
-    assert_difference('Tag.count') do
-      post tags_url, params: { tag: { content: @tag.content, deleted_at: @tag.deleted_at, name: @tag.name } }
-    end
-
-    assert_redirected_to tag_url(Tag.last)
-  end
+  # test "should create tag" do
+  #   assert_difference('Tag.count') do
+  #     post tags_url, params: { tag: { content: @tag.content, deleted_at: @tag.deleted_at, name: @tag.name } }
+  #   end
+  #
+  #   assert_redirected_to tag_url(Tag.last)
+  # end
 
   test "should show tag" do
     get tag_url(@tag)
