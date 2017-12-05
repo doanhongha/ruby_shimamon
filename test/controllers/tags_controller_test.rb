@@ -4,7 +4,7 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @tag = tags(:one)
   end
-
+#CircleCIの結果をSlackに通知する
   test "should get index" do
     get tags_url
     assert_response :success
