@@ -77,5 +77,9 @@ end
   gem 'carrierwave', '~> 1.0'
   gem 'fog'
   gem 'mini_magick'
+# comment rubocop directly on pull request
+  gem 'saddler'
+  gem 'saddler-reporter-github'
+  gem 'rubocop-checkstyle_formatter'
 
 

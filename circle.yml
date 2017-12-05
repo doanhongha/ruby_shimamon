@@ -5,9 +5,13 @@ machine:
 
   environment:
     CIRCLE_ENV: test
+#test:
+#  post:
+#    - bundle exec rubocop
 test:
-  post:
-    - bundle exec rubocop
+  pre:
+    - chmod +x bin/run-rubocop.sh
+    - bin/run-rubocop.sh
 # deployment:
 #   staging:
 #     branch: develop
