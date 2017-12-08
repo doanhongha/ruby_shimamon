@@ -1,0 +1,4 @@
+:schedule:
+  mailer_job:
+    cron: '0 * * * * * Asia/Tokyo'   # Runs once per minute
+    class: MailerJob

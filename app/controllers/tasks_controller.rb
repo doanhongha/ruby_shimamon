@@ -5,8 +5,8 @@ class TasksController < ApplicationController
 		@task = Task.new
 	end
 	def index
-		@tasks = Task.order('deadline ASC').where(assign: current_user.id)
-		@tasks = Kaminari.paginate_array(@tasks).page(params[:page])
+    @tasks = Task.order('deadline ASC').where(assign: current_user.id)
+    @tasks = Kaminari.paginate_array(@tasks).page(params[:page])
 	end
 	def create
 		params[:task][:tag] = concatenate_tag_id params[:task][:tag]
@@ -16,7 +16,7 @@ class TasksController < ApplicationController
 		else
 			render 'new'
 		end
-	end
+  end
 
 	def concatenate_tag_id tags
 		tags = tags.split(',')
