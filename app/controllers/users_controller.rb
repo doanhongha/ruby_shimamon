@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 	before_action :logged_in_user, only: [:index, :edit, :update, :show]
 	before_action :admin, only: [:destroy, :index]
-	def index
+  require 'aws-sdk-ses'
+  def index
 		@users = User.where.not(id: current_user.id)
 	end
 	def register
@@ -18,7 +19,30 @@ class UsersController < ApplicationController
 	      redirect_to users_path
 	    else
 		    @user = User.new(user_params)
-
+        Aws.config.update({credentials: Aws::Credentials.new('AKIAJGUTRBFKHWCUQ7WA', 'qmjM0a4/X4sWOi9kyIjUv7PpqLuqlz/VUABKdwxp')})
+        ses = Aws::SES::Client.new(
+            :region => 'us-east-1'
+        )
+        ses.send_email(
+            {
+                destination: {
+                    to_addresses: [@user.email]
+                },
+                message: {
+                    body: {
+                        text: {
+                            charset: 'UTF-8',
+                            data: 'Thank you!'
+                        }
+                    },
+                    subject: {
+                        charset: 'UTF-8',
+                        data: 'mail subject'
+                    }
+                },
+                source: 'doanhong.ha@monstar-lab.com'
+            }
+        )
 		    respond_to do |format|
 		      if @user.save
 		        format.html { redirect_to '/login', notice: 'User was successfully created.' }

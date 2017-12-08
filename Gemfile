@@ -81,5 +81,10 @@ end
   gem 'saddler'
   gem 'saddler-reporter-github'
   gem 'rubocop-checkstyle_formatter'
-
-
+  gem 'aasm'
+  # gem "aws-ses", "~> 0.6.0", :require => 'aws/ses'
+  gem 'aws-sdk'
+  gem 'aws-sdk-rails'
+  gem 'sidekiq-scheduler'
+  gem 'sidekiq'
+  gem 'sinatra', require: false
