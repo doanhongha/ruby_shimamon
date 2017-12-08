@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 	      redirect_to users_path
 	    else
 		    @user = User.new(user_params)
-        Aws.config.update({credentials: Aws::Credentials.new('AKIAJGUTRBFKHWCUQ7WA', 'qmjM0a4/X4sWOi9kyIjUv7PpqLuqlz/VUABKdwxp')})
+        Aws.config.update({credentials: Aws::Credentials.new(ENV["ACCESS_KEY_ID"], ENV["SECRET_ACCESS_KEY"])})
         ses = Aws::SES::Client.new(
             :region => 'us-east-1'
         )
